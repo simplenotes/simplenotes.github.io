@@ -19,79 +19,55 @@
     
   </head>
   <body>
-  <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand pacifico" href="#">Simple Notes</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link itim" href="#">Home</a>
+            <a class="nav-link itim" href="./index.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link itim" href="#">Finalizado</a>
+            <a class="nav-link itim" href="#">Finished</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link itim" href="#">Postpuesto</a>
+            <a class="nav-link itim" href="#">Later</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link itim" href="#">Eliminado</a>
+            <a class="nav-link itim" href="#">Deleted</a>
           </li>
+          <!--
           <li class="nav-item">
-            <a class="nav-link itim" href="#">Acerca</a>
+            <a class="nav-link itim" href="#">About</a>
           </li>
+          -->
+          <!-- LOGIN - TO BE ACTIVATED IN THE FUTURE
           <li class="nav-item">
-            <a class="nav-link itim" data-toggle="modal" data-target="#exampleModal" href="#">Login</a>
-
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-              <div class="modal-dialog" role="document">
-
-                <!--<div class="modal-content">-->
-
-                  <div class="card text-center">
-                    <div class="card-header">
-                      <ul class="nav nav-tabs card-header-tabs">
-                        <li class="nav-item">
-                          <a class="nav-link active" href="#">Active</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link disabled" href="#">Disabled</a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="card-body">
-                      <h4 class="card-title">Special title treatment</h4>
-                      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                  </div>
-
-                </div>
-
-              <!--</div>-->
-
-            </div>
-
-
+            <a class="nav-link itim" href="./login.html">Login</a>
           </li>
+        -->
         </ul>
+        <form class="form-inline my-2 my-lg-0 mr-3">
+          <button class="btn btn-danger my-2 my-sm-0" type="submit">
+            <div class="row">
+              <i class="material-icons col ml-3">save</i><div class="col mr-1"> Save</div>
+            </div>
+          </button>
+        </form>
       </div>
-  </nav>
+    </nav>
     <div class="container-fluid p-3 bg-white">
-      <h3 class="pacifico">Por hacer</h3>
+      <h2 class="pacifico text-center">To do</h2>
       <div class="container-fluid mt-3" id="todos">
       
       </div>   
     </div>
     <div class="fixed-bottom container-fluid flower bg-dark pt-3" >
       <div class="input-group container-fluid mb-3 pb-1">
-        <input type="text" class="form-control" placeholder="Quiero..." id="text_origin">
+        <input type="text" class="form-control" placeholder="I want..." id="text_origin">
         <span class="input-group-btn">
           <button class="btn btn-secondary" onclick="getAndInsert()" type="button"><strong>+</strong></button>
         </span>
@@ -101,6 +77,19 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
+    <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAjIJJLuQiBcENQosHAan5sgASg9GCkncE",
+        authDomain: "simplenotes-f7e2d.firebaseapp.com",
+        databaseURL: "https://simplenotes-f7e2d.firebaseio.com",
+        projectId: "simplenotes-f7e2d",
+        storageBucket: "",
+        messagingSenderId: "100069973304"
+      };
+      firebase.initializeApp(config);
+    </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>

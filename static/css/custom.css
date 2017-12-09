@@ -1,7 +1,12 @@
-.cute {
-	font-family: 'Open Sans', sans-serif;
+.pacifico {
+	font-family: 'Pacifico', cursive;
 }
-
+.itim{
+	font-family: 'Itim', cursive;
+}
+.flower{
+	font-family: 'Indie Flower', cursive;
+}
 .bg-gray{
 	background-color: lightgray;
 }
@@ -24,4 +29,27 @@ p{
 }
 #todos{
 	padding-bottom: 80px;
+}
+button#buttonDelete {
+    padding: 2px;
+    height: fit-content;
+}
+button#buttonDone {
+    padding: 2px;
+    height: fit-content;
+}
+.btn-group{
+	background-color: white;
+	border: white;
+}
+.modal1 {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  display: none;
+  overflow: hidden;
+  outline: 0;
 }
