@@ -30,13 +30,11 @@ p{
 #todos{
 	padding-bottom: 80px;
 }
-button#buttonDelete {
-    padding: 2px;
+.buttonDelete {
     height: fit-content;
 }
-button#buttonDone {
-    padding: 2px;
-    height: fit-content;
+.buttonDone {
+    height: fix-content;
 }
 .btn-group{
 	background-color: white;
@@ -52,4 +50,7 @@ button#buttonDone {
   display: none;
   overflow: hidden;
   outline: 0;
+}
+.max{
+	padding-top: 6px;
 }
