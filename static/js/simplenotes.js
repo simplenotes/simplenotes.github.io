@@ -53,7 +53,7 @@ function actionDelete(clicked_id){
 	var y = document.getElementById(x).parentElement.id;
 	var z = document.getElementById(y).parentElement.id;
 	var a = document.getElementById(z)
-	alert(z);
+	//alert(z);
     a.parentNode.removeChild(a);
     return false;
 }
@@ -61,23 +61,15 @@ function actionDelete(clicked_id){
 function actionDone(clicked_id){
     var selector = "text"+clicked_id;
     var text_editable = document.getElementById(selector);
-    //alert(text_editable.innerHTML);
+    ////alert(text_editable.innerHTML);
     var decor = text_editable.style.textDecoration;
     if (decor == "line-through") {
         text_editable.style.textDecoration = "none";
     }else{
         text_editable.style.textDecoration = "line-through";
     }
-    alert(text_editable.style.textDecoration);
+    //alert(text_editable.style.textDecoration);
 }
-
-//function loadFromCookie(){
-//    alert("DOM READY");
-//    var ca = document.cookie;
-//    var splitted = ca.split(';');
-//    var len = ca.length;
-//    alert(ca);
-//}
 
 function getCookie(id) {
     var name = "text"+id;
@@ -108,11 +100,14 @@ function setCookie(id) {
 }
 
 function loadAllCookies(){
-    var cookie_box = document.cookie;
-    for (var i = 0; i < cookie_box.length; i++) {
-        var biscuit = getCookie(String(i)); // gets a cookie 
-        var cookie_value = getCookieValue(biscuit);
-        insert(i,cookie_value); 
+    if (getCookie(0) == "null" || "undefined") {return false;}
+    else{
+        var cookie_box = document.cookie;
+        for (var i = 0; i < cookie_box.length; i++) {
+            var biscuit = getCookie(String(i)); // gets a cookie 
+            var cookie_value = getCookieValue(biscuit);
+            insert(i,cookie_value); 
+        }
     }
 }
 
