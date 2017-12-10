@@ -51,7 +51,7 @@
         -->
         </ul>
         <form class="form-inline my-2 my-lg-0 mr-3">
-          <button type="button" class="btn btn-danger my-2 my-sm-0" onclick="save()">
+          <button type="button" class="btn btn-danger my-2 my-sm-0" data-toggle="modal" data-target="#alertModal">
             <div class="row">
               <i class="material-icons col ml-3">save</i><div class="col mr-1"> Save</div>
             </div>
@@ -95,5 +95,21 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/js/iziModal.min.js"></script> 
     <script src="./static/js/simplenotes.js"></script>
+    <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Everything has been saved</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Everything you wrote has been saved.
+                    You can now leave the page.
+                  </div>
+                </div>
+              </div>
+            </div> 
   </body>
 </html>

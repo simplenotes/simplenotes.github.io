@@ -1,7 +1,10 @@
-document.addEventListener("DOMContentLoaded", loadFromCookie, false);
+//Ramon Vila Ferreres 2018 - No Comercial
+//Simplenotes.js
+
+document.addEventListener("DOMContentLoaded", loadAllCookies, false);
+var cookie_counter = 0;
 var counter = 0;
 var deleted =[]; //Deleted posts
-var saved = []; //All the text posted
 var elem = document.getElementById('text_origin');
 var today = new Date();
 var expiry = new Date(today.getTime() + 30 * 24 * 3600 * 1000); // Cookie lifetime
@@ -10,6 +13,7 @@ elem.onkeyup = function(e){
        getAndInsert();
     }
 }
+
 function insert(id, text){
 	var div = document.createElement('div');
     div.innerHTML = '<div class="row pb-2" id="delete">\
@@ -29,8 +33,11 @@ function insert(id, text){
             </div>';
 
     counter += 1;
-    document.getElementById('todos').appendChild(div);
+    var insert_to = document.getElementById('todos');
+    insert_to.insertBefore(div, insert_to.childNodes[0]);
+    setCookie(id);
 }
+
 function getAndInsert() {
 
 	var text = document.getElementById('text_origin').value;
@@ -39,8 +46,6 @@ function getAndInsert() {
 	}
 	insert(counter,text);
     document.getElementById('text_origin').value = "";
-    saved.push(text);
-   	//alert("VALUE:"+text+" SAVED")
 }
 
 function actionDelete(clicked_id){
@@ -48,33 +53,71 @@ function actionDelete(clicked_id){
 	var y = document.getElementById(x).parentElement.id;
 	var z = document.getElementById(y).parentElement.id;
 	var a = document.getElementById(z)
-	//alert(z);
+	alert(z);
     a.parentNode.removeChild(a);
     return false;
 }
+
 function actionDone(clicked_id){
-	var selector = "text"+clicked_id;
-	var text_editable = document.getElementById(selector);
-	//alert(selector);
-	//text_editable.style.textDecoration = 'line-through';
-    return false;
-}
-function setCookie(name, value) {
-	document.cookie=name + "=" + escape(value) + "; path=/; expires=" + expiry.toGMTString();
-}
-
-function save(){
-	for (var i = 0; i < saved.length; i++) {
-		var correspondence = "text"+String(i);
-		setCookie(correspondence, saved[i]);
-		//alert("VALUE SAVED FOR ELEMENT ["+correspondence+"]:"+saved[i]);
-	}
-}
-
-function loadFromCookie(){
-    var ca = document.cookie.split(';');
-    var len = ca.length;
-    for (var i = len - 1; i >= 0; i--) {
-    	//alert(ca[i]);
+    var selector = "text"+clicked_id;
+    var text_editable = document.getElementById(selector);
+    //alert(text_editable.innerHTML);
+    var decor = text_editable.style.textDecoration;
+    if (decor == "line-through") {
+        text_editable.style.textDecoration = "none";
+    }else{
+        text_editable.style.textDecoration = "line-through";
     }
+    alert(text_editable.style.textDecoration);
+}
+
+//function loadFromCookie(){
+//    alert("DOM READY");
+//    var ca = document.cookie;
+//    var splitted = ca.split(';');
+//    var len = ca.length;
+//    alert(ca);
+//}
+
+function getCookie(id) {
+    var name = "text"+id;
+    var dc = document.cookie;
+    var prefix = name +"=";
+    var begin = dc.indexOf("; " + prefix);
+    if (begin == -1) {
+        begin = dc.indexOf(prefix);
+        if (begin != 0)return null;
+    } else {
+        begin += 2;
+    }
+    var end = document.cookie.indexOf(";", begin);
+    if (end == -1) {
+        end = dc.length;
+    }
+    return unescape(dc.substring(begin + prefix.length, end));
+}
+
+function setCookie(id) {
+    var expiredays = 360;
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + expiredays);
+    var selector = "text"+id;
+    var text_editable = document.getElementById(selector);
+    var value = text_editable.innerHTML;
+    document.cookie = id + "=" + value + ";path=/" + ((expiredays ==null) ? "" : ";expires=" + exdate.toGMTString());
+}
+
+function loadAllCookies(){
+    var cookie_box = document.cookie;
+    for (var i = 0; i < cookie_box.length; i++) {
+        var biscuit = getCookie(String(i)); // gets a cookie 
+        var cookie_value = getCookieValue(biscuit);
+        insert(i,cookie_value); 
+    }
+}
+
+function getCookieValue(cookie) {
+  var value = "; " + cookie;
+  var parts = value.split("; " + cookie + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
 }
