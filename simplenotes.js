@@ -1,7 +1,7 @@
 //Ramon Vila Ferreres 2018 - No Comercial
 //Simplenotes.js
 
-document.addEventListener("DOMContentLoaded", loadAllCookies, false);
+document.addEventListener("DOMContentLoaded", loadAllCookies(), false);
 var cookie_counter = 0;
 var counter = 0;
 var deleted =[]; //Deleted posts
