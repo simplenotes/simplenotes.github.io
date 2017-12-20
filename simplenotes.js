@@ -1,6 +1,7 @@
 //Ramon Vila Ferreres 2018 - No Comercial
 //Simplenotes.js
-window.onload = loadAllCookies;
+
+document.addEventListener("DOMContentLoaded", loadAllCookies, false);
 var cookie_counter = 0;
 var counter = 0;
 var deleted =[]; //Deleted posts
@@ -60,7 +61,7 @@ function actionDelete(clicked_id){
 function actionDone(clicked_id){
     var selector = "text"+clicked_id;
     var text_editable = document.getElementById(selector);
-    ////alert(text_editable.innerHTML);
+    //alert(text_editable.innerHTML);
     var decor = text_editable.style.textDecoration;
     if (decor == "line-through") {
         text_editable.style.textDecoration = "none";
