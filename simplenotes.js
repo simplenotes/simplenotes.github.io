@@ -78,7 +78,9 @@ function getCookie(id) {
     var begin = dc.indexOf("; " + prefix);
     if (begin == -1) {
         begin = dc.indexOf(prefix);
-        if (begin != 0)return null;
+        if (begin != 0) {
+            return null;
+        }
     } else {
         begin += 2;
     }
@@ -102,10 +104,12 @@ function setCookie(id) {
 function loadAllCookies(){
         alert("Entering cookie zone");
         var cookie_box = document.cookie;
-        for (var i = 0; i < cookie_box.length; i++) {
-            var biscuit = getCookie(String(i)); // gets a cookie 
+        alert(cookie_box);
+        for (var i = 0; i < 10; i++) {
+            var biscuit = getCookie(String(i)); // gets a cookie
+            alert("Biscuit: "+biscuit);
             var cookie_value = getCookieValue(biscuit);
-            insert(i,cookie_value); 
+            insert(i, cookie_value); 
             alert("cookie inserted, element "+i+" and value"+cookie_value);
         }
 }
