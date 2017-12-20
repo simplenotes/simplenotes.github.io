@@ -14,7 +14,8 @@ elem.onkeyup = function(e){
     }
 }
 
-function insert(id, text){
+function insert(id, text, flag){
+
 	var div = document.createElement('div');
     div.innerHTML = '<div class="row pb-2" id="delete">\
                 <div class="col-auto" id="m-outer">\
@@ -35,7 +36,9 @@ function insert(id, text){
     counter += 1;
     var insert_to = document.getElementById('todos');
     insert_to.insertBefore(div, insert_to.childNodes[0]);
-    setCookie(id);
+    if (flag == "sc"){
+        setCookie(id);
+    }
 }
 
 function getAndInsert() {
@@ -44,7 +47,7 @@ function getAndInsert() {
 	if (text=="") {
 		text = " ";
 	}
-	insert(counter,text);
+	insert(counter,text,"sc");
     document.getElementById('text_origin').value = "";
 }
 
@@ -89,6 +92,7 @@ function getCookie(id) {
         end = dc.length;
     }
     return unescape(dc.substring(begin + prefix.length, end));
+    alert("Hello from get_Cookie: "+ unescape(dc.substring(begin + prefix.length, end)));
 }
 
 function setCookie(id) {
