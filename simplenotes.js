@@ -100,10 +100,6 @@ function setCookie(id) {
 }
 
 function loadAllCookies(){
-    //if (getCookie(0) == "null" || "undefined") {
-        //alert("No cookies");
-        //return false;
-    }//else{
         alert("Entering cookie zone");
         var cookie_box = document.cookie;
         for (var i = 0; i < cookie_box.length; i++) {
@@ -112,7 +108,6 @@ function loadAllCookies(){
             insert(i,cookie_value); 
             alert("cookie inserted, element "+i+" and value"+cookie_value);
         }
-    }
 }
 
 function getCookieValue(cookie) {
