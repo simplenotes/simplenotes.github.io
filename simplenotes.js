@@ -37,7 +37,7 @@ function insert(id, text, flag){
     var insert_to = document.getElementById('todos');
     insert_to.insertBefore(div, insert_to.childNodes[0]);
     if (flag == "sc"){
-        setCookie(id);
+        createCookie(id,30);
     }
 }
 
@@ -74,35 +74,40 @@ function actionDone(clicked_id){
     //alert(text_editable.style.textDecoration);
 }
 
-function getCookie(id) {
-    var name = "text"+id;
-    var dc = document.cookie;
-    var prefix = name +"=";
-    var begin = dc.indexOf("; " + prefix);
-    if (begin == -1) {
-        begin = dc.indexOf(prefix);
-        if (begin != 0) {
-            return null;
+function getCookie(name) 
+{
+    var result = null;
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    
+    for(var i=0; i < ca.length; i++) {
+        var c = ca[i];
+        
+        while (c.charAt(0)==' '){
+            c = c.substring(1,c.length);
         }
-    } else {
-        begin += 2;
+
+        if (c.indexOf(nameEQ) == 0) {
+            result = c.substring(nameEQ.length,c.length);
+            break;
+        }
     }
-    var end = document.cookie.indexOf(";", begin);
-    if (end == -1) {
-        end = dc.length;
-    }
-    return unescape(dc.substring(begin + prefix.length, end));
-    alert("Hello from get_Cookie: "+ unescape(dc.substring(begin + prefix.length, end)));
+    
+    return result;
 }
 
-function setCookie(id) {
-    var expiredays = 360;
-    var exdate = new Date();
-    exdate.setDate(exdate.getDate() + expiredays);
+function createCookie(name,value,days) 
+{
+
+    var date = new Date();
+    date.setTime(date.getTime()+(days*24*60*60*1000));
+    var expires = "; expires="+date.toGMTString();
+
     var selector = "text"+id;
     var text_editable = document.getElementById(selector);
     var value = text_editable.innerHTML;
-    document.cookie = id + "=" + value + ";path=/" + ((expiredays ==null) ? "" : ";expires=" + exdate.toGMTString());
+
+    document.cookie = name+"="+value+expires+"; path=/";
 }
 
 function loadAllCookies(){
